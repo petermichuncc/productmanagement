@@ -1,0 +1,7 @@
+//Diagnostics
+                //out.println("<p>" + path + "</p>");
+                //ArrayList<User> users = UserIO.getUsers(path);      
+                //out.println("<p>" + users.get(0).getFirstName() + "</p>");            
+                //out.println(user.getEmail());
+                //out.println(user.getPassword());
+                //User was null, so there was no match in the text file
