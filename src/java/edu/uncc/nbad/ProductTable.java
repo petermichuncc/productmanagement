@@ -10,10 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 import edu.uncc.nbad.Product;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 
 public class ProductTable {
+ static String url = "jdbc:mysql://localhost:3306/store";
+    static String username = "user";
+    static String password = "123";
+
+    static Connection connection = null;
+    static PreparedStatement selectProduct = null;
+    static ResultSet resultset = null;
 
 	
     static {
@@ -32,7 +44,59 @@ public class ProductTable {
     }
 
     public static Product selectProduct(String productCode) {
-		throw new NotImplementedException(); // remove this line and implement the logic
+        
+         try
+    {
+                   String url = "jdbc:mysql://localhost:3306/store";
+    Connection conn = DriverManager.getConnection(url, "user", "123");
+      
+      // our SQL SELECT query. 
+      // if you only need a few columns, specify them by name instead of using "*"
+      String query = "SELECT * FROM product WHERE id = "+id;
+
+      // create the java statement
+      Statement st = conn.createStatement();
+      
+      // execute the query, and get a java resultset
+      ResultSet rs = st.executeQuery(query);
+      Product product = new Product();     
+       while (rs.next())
+     {
+           
+   product.setId(rs.getInt("id"));
+   product.setName(rs.getString("name"));
+   product.setBrand(rs.getString("brand"));
+   product.setPrice(rs.getInt("price"));
+   product.setDescription(rs.getString("description"));
+    //return user;
+     System.out.print("ID: " + rs.getInt("id"));
+         
+    
+      // Product.add(product);
+        
+        // print the results
+        
+     }
+      st.close();
+      return product;
+      
+    }catch(Exception e) {
+        return null;
+    }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+		//throw new NotImplementedException(); // remove this line and implement the logic
     }
 
     public static boolean exists(String productCode) {
