@@ -41,6 +41,14 @@ public class ProductTable {
 
     public static List<Product> selectProducts() {
 		throw new NotImplementedException(); // remove this line and implement the logic
+    /*
+       I need to make a list of products         
+                
+                
+                */
+    
+    
+    
     }
 
     public static Product selectProduct(String productCode) {
@@ -51,6 +59,7 @@ public class ProductTable {
     Connection conn = DriverManager.getConnection(url, "user", "123");
       
       // our SQL SELECT query. 
+      
       // if you only need a few columns, specify them by name instead of using "*"
       String query = "SELECT * FROM product WHERE id = "+id;
 
@@ -63,13 +72,20 @@ public class ProductTable {
        while (rs.next())
      {
            
-   product.setId(rs.getInt("id"));
-   product.setName(rs.getString("name"));
-   product.setBrand(rs.getString("brand"));
+         /*
+         So here I need to set the object that is holding the product data
+         
+         
+         
+         */
+          product.setId(rs.getInt("id"));
+   product.setCode(rs.getString("code"));
+  
    product.setPrice(rs.getInt("price"));
    product.setDescription(rs.getString("description"));
+   
     //return user;
-     System.out.print("ID: " + rs.getInt("id"));
+     System.out.print("ID: " + rs.getString("id"));
          
     
       // Product.add(product);
